@@ -1,0 +1,41 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 300px;
+    padding: 2px;
+}
+
+.display {
+    border: 1px solid grey;
+    background-color: lightgrey;
+    height: 30px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    border: 1px solid black;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+}
+
+.row > div {
+    border: 1px solid black;
+    width: 30%;
+    height: auto;
+}
+
+.hidden {
+    border: none;
+}
