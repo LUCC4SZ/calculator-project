@@ -8,13 +8,16 @@
     flex-direction: column;
     border: 1px solid black;
     width: 300px;
-    padding: 2px;
+    height: 400px;
+    padding: 8px;
+    gap: 32px;
+    margin: 50px auto;
 }
 
 .display {
     border: 1px solid grey;
     background-color: lightgrey;
-    height: 30px;
+    height: 20%;
 }
 
 .buttons {
@@ -34,8 +37,4 @@
     border: 1px solid black;
     width: 30%;
     height: auto;
-}
-
-.hidden {
-    border: none;
 }
