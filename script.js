@@ -14,22 +14,31 @@ function divd(a, b) {
     return a / b;
 };
 
-function operate(operator, a, b) {
+function operate(decodedExpression) {
+    let a = decodedExpression[0];
+    let operator = decodedExpression[1];
+    let b = decodedExpression[2];
+    let result;
     switch (operator) {
         case "+":
-            return add(a, b);
+            result = add(a, b);
+            break;
         case "-":
-            return subs(a, b);
+            result = subs(a, b);
+            break;
         case "*":
-            return mult(a, b);
+            result = mult(a, b);
+            break;
         case "/":
-            return divd(a, b);
+            result = divd(a, b);
+            break;
     }
+    return result;
 };
 
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const operators = ["+", "-", "*", "/", "="];
+const operators = ["+", "-", "*", "/"];
 
 const display = document.getElementById("display");
 
@@ -71,35 +80,101 @@ const equal = document.getElementById("equal");
 
 // -----------------------------------------------------
 
-let expresion = '';
+let expression = '';
+
+zero.addEventListener("click", () => {
+    expression += zero.innerText;
+    display.innerText += zero.innerText;
+});
+
+one.addEventListener("click", () => {
+    expression += one.innerText;
+    display.innerText += one.innerText;
+});
+
+two.addEventListener("click", () => {
+    expression += two.innerText;
+    display.innerText += two.innerText;
+});
+
+three.addEventListener("click", () => {
+    expression += three.innerText;
+    display.innerText += three.innerText;
+});
+
+four.addEventListener("click", () => {
+    expression += four.innerText;
+    display.innerText += four.innerText;
+});
+
+five.addEventListener("click", () => {
+    expression += five.innerText;
+    display.innerText += five.innerText;
+});
+
+six.addEventListener("click", () => {
+    expression += six.innerText;
+    display.innerText += six.innerText;
+});
 
 seven.addEventListener("click", () => {
-    expresion += seven.innerText;
+    expression += seven.innerText;
     display.innerText += seven.innerText;
 });
 
 eight.addEventListener("click", () => {
-    expresion += eight.innerText;
+    expression += eight.innerText;
     display.innerText += eight.innerText;
 });
 
+nine.addEventListener("click", () => {
+    expression += nine.innerText;
+    display.innerText += nine.innerText;
+});
+
 plus.addEventListener("click", () => {
-    expresion += plus.innerText;
+    expression += plus.innerText;
     display.innerText += plus.innerText;
 });
 
+minus.addEventListener("click", () => {
+    expression += minus.innerText;
+    display.innerText += minus.innerText;
+});
+
+multi.addEventListener("click", () => {
+    expression += multi.innerText;
+    display.innerText += multi.innerText;
+});
+
+division.addEventListener("click", () => {
+    expression += division.innerText;
+    display.innerText += division.innerText;
+});
+
+function decodeExpression(expression) {
+    let decodedExpression = [];
+    let op, a, b;
+    for (let i = 0; i < expression.length; i++) {
+        if (operators.includes(expression[i])){
+            op = i;
+            break;
+        }
+    }
+    a = parseInt(expression.slice(0, op));
+    decodedExpression.push(a);
+    decodedExpression.push(expression[op]);
+    b = parseInt(expression.slice(op + 1,));
+    decodedExpression.push(b);
+    return decodedExpression;
+}
+
 equal.addEventListener("click", () => {
-    console.log(expresion);
-    display.innerText = getNumber(expresion);
+    let result = operate(decodeExpression(expression));
+    display.innerText = result;
 });
 
 clear.addEventListener("click", () => {
     display.innerText = ''
-    expresion = '';
+    expression = '';
 });
-
-function app() {
-    console.log("Probando");
-};
-
-app();
