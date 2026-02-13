@@ -11,7 +11,7 @@ function mult(a, b) {
 };
 
 function divd(a, b) {
-    return a / b;
+    return Math.round(a / b);
 };
 
 function operate(decodedExpression) {
@@ -82,6 +82,25 @@ let expression = '';
 
 let result;
 
+let flag = false;
+
+function decodeExpression(expression) {
+    let decodedExpression = [];
+    let op, a, b;
+    for (let i = 0; i < expression.length; i++) {
+        if (operators.includes(expression[i])){
+            op = i;
+            break;
+        }
+    }
+    a = parseInt(expression.slice(0, op));
+    b = parseInt(expression.slice(op + 1,));
+    decodedExpression.push(a);
+    decodedExpression.push(expression[op]);
+    decodedExpression.push(b);
+    return decodedExpression;
+}
+
 zero.addEventListener("click", () => {
     expression += zero.innerText;
     display.innerText += zero.innerText;
@@ -131,8 +150,6 @@ nine.addEventListener("click", () => {
     expression += nine.innerText;
     display.innerText += nine.innerText;
 });
-
-let flag = false;
 
 plus.addEventListener("click", () => {
     if (!flag) {
@@ -189,23 +206,6 @@ division.addEventListener("click", () => {
         expression += division.innerText;
     }
 });
-
-function decodeExpression(expression) {
-    let decodedExpression = [];
-    let op, a, b;
-    for (let i = 0; i < expression.length; i++) {
-        if (operators.includes(expression[i])){
-            op = i;
-            break;
-        }
-    }
-    a = parseInt(expression.slice(0, op));
-    b = parseInt(expression.slice(op + 1,));
-    decodedExpression.push(a);
-    decodedExpression.push(expression[op]);
-    decodedExpression.push(b);
-    return decodedExpression;
-}
 
 equal.addEventListener("click", () => {
     result = operate(decodeExpression(expression));
