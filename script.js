@@ -101,6 +101,17 @@ function decodeExpression(expression) {
     return decodedExpression;
 }
 
+function completeExpression(decodedExpression) {
+    let flag = true;
+    for (let i = 0; i < decodedExpression.length; i++) {
+        if (typeof(decodedExpression[i]) == "undefined" || Number.isNaN(decodedExpression[i])) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+}
+
 zero.addEventListener("click", () => {
     expression += zero.innerText;
     display.innerText += zero.innerText;
@@ -208,13 +219,20 @@ division.addEventListener("click", () => {
 });
 
 equal.addEventListener("click", () => {
-    result = operate(decodeExpression(expression));
-    display.innerText = result;
-    flag = false;
+    let decodedExpression = decodeExpression(expression);
+    if (completeExpression(decodedExpression)) {
+        result = operate(decodeExpression(expression));
+        display.innerText = result;
+        flag = false;
+    } else {
+        display.innerText = '';
+        expression = '';
+        flag = false;
+    }
 });
 
 clear.addEventListener("click", () => {
-    display.innerText = ''
+    display.innerText = '';
     expression = '';
     flag = false;
 });
