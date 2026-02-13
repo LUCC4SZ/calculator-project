@@ -36,8 +36,6 @@ function operate(decodedExpression) {
     return result;
 };
 
-const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 const operators = ["+", "-", "*", "/"];
 
 const display = document.getElementById("display");
@@ -81,6 +79,8 @@ const equal = document.getElementById("equal");
 // -----------------------------------------------------
 
 let expression = '';
+
+let result;
 
 zero.addEventListener("click", () => {
     expression += zero.innerText;
@@ -132,9 +132,20 @@ nine.addEventListener("click", () => {
     display.innerText += nine.innerText;
 });
 
+let flag = false;
+
 plus.addEventListener("click", () => {
-    expression += plus.innerText;
-    display.innerText += plus.innerText;
+    if (!flag) {
+        expression += plus.innerText;
+        display.innerText += plus.innerText;
+        flag = true;
+    } else {
+        result = operate(decodeExpression(expression));
+        display.innerText = result;
+        display.innerText += plus.innerText;
+        expression = result.toString();
+        expression += plus.innerText;
+    }
 });
 
 minus.addEventListener("click", () => {
@@ -162,19 +173,21 @@ function decodeExpression(expression) {
         }
     }
     a = parseInt(expression.slice(0, op));
+    b = parseInt(expression.slice(op + 1,));
     decodedExpression.push(a);
     decodedExpression.push(expression[op]);
-    b = parseInt(expression.slice(op + 1,));
     decodedExpression.push(b);
     return decodedExpression;
 }
 
 equal.addEventListener("click", () => {
-    let result = operate(decodeExpression(expression));
+    result = operate(decodeExpression(expression));
     display.innerText = result;
+    flag = false;
 });
 
 clear.addEventListener("click", () => {
     display.innerText = ''
     expression = '';
+    flag = false;
 });
