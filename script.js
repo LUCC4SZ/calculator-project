@@ -149,18 +149,45 @@ plus.addEventListener("click", () => {
 });
 
 minus.addEventListener("click", () => {
-    expression += minus.innerText;
-    display.innerText += minus.innerText;
+    if (!flag) {
+        expression += minus.innerText;
+        display.innerText += minus.innerText;
+        flag = true;
+    } else {
+        result = operate(decodeExpression(expression));
+        display.innerText = result;
+        display.innerText += minus.innerText;
+        expression = result.toString();
+        expression += minus.innerText;
+    }
 });
 
 multi.addEventListener("click", () => {
-    expression += multi.innerText;
-    display.innerText += multi.innerText;
+    if (!flag) {
+        expression += multi.innerText;
+        display.innerText += multi.innerText;
+        flag = true;
+    } else {
+        result = operate(decodeExpression(expression));
+        display.innerText = result;
+        display.innerText += multi.innerText;
+        expression = result.toString();
+        expression += multi.innerText;
+    }
 });
 
 division.addEventListener("click", () => {
-    expression += division.innerText;
-    display.innerText += division.innerText;
+    if (!flag) {
+        expression += division.innerText;
+        display.innerText += division.innerText;
+        flag = true;
+    } else {
+        result = operate(decodeExpression(expression));
+        display.innerText = result;
+        display.innerText += division.innerText;
+        expression = result.toString();
+        expression += division.innerText;
+    }
 });
 
 function decodeExpression(expression) {
