@@ -30,7 +30,12 @@ function operate(decodedExpression) {
             result = mult(a, b);
             break;
         case "/":
-            result = divd(a, b);
+            if (b === 0) {
+                alert("Error! You can't divide a number by zero!");
+                result = 0;
+            } else {
+                result = divd(a, b);
+            }
             break;
     }
     return result;
