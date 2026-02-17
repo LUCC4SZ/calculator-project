@@ -87,14 +87,20 @@ let expression = '';
 
 let result;
 
-let flag = false;
+let chain = false;
 
 function decodeExpression(expression) {
     let decodedExpression = [];
     let op, a, b;
+    let flag = false;
     for (let i = 0; i < expression.length; i++) {
         if (operators.includes(expression[i])){
-            op = i;
+            if (!flag) {
+                op = i;
+                flag = true;
+            } else {
+                
+            }
             break;
         }
     }
@@ -116,6 +122,8 @@ function completeExpression(decodedExpression) {
     }
     return flag;
 }
+
+// -----------------------------------------------------
 
 zero.addEventListener("click", () => {
     expression += zero.innerText;
@@ -167,11 +175,13 @@ nine.addEventListener("click", () => {
     display.innerText += nine.innerText;
 });
 
+// -----------------------------------------------------
+
 plus.addEventListener("click", () => {
-    if (!flag) {
+    if (!chain) {
         expression += plus.innerText;
         display.innerText += plus.innerText;
-        flag = true;
+        chain = true;
     } else {
         result = operate(decodeExpression(expression));
         display.innerText = result;
@@ -182,10 +192,10 @@ plus.addEventListener("click", () => {
 });
 
 minus.addEventListener("click", () => {
-    if (!flag) {
+    if (!chain) {
         expression += minus.innerText;
         display.innerText += minus.innerText;
-        flag = true;
+        chain = true;
     } else {
         result = operate(decodeExpression(expression));
         display.innerText = result;
@@ -196,10 +206,10 @@ minus.addEventListener("click", () => {
 });
 
 multi.addEventListener("click", () => {
-    if (!flag) {
+    if (!chain) {
         expression += multi.innerText;
         display.innerText += multi.innerText;
-        flag = true;
+        chain = true;
     } else {
         result = operate(decodeExpression(expression));
         display.innerText = result;
@@ -210,10 +220,10 @@ multi.addEventListener("click", () => {
 });
 
 division.addEventListener("click", () => {
-    if (!flag) {
+    if (!chain) {
         expression += division.innerText;
         display.innerText += division.innerText;
-        flag = true;
+        chain = true;
     } else {
         result = operate(decodeExpression(expression));
         display.innerText = result;
@@ -228,16 +238,16 @@ equal.addEventListener("click", () => {
     if (completeExpression(decodedExpression)) {
         result = operate(decodeExpression(expression));
         display.innerText = result;
-        flag = false;
+        chain = false;
     } else {
         display.innerText = '';
         expression = '';
-        flag = false;
+        chain = false;
     }
 });
 
 clear.addEventListener("click", () => {
     display.innerText = '';
     expression = '';
-    flag = false;
+    chain = false;
 });
