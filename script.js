@@ -89,18 +89,14 @@ let result;
 
 let chain = false;
 
+let consecutive = false;
+
 function decodeExpression(expression) {
     let decodedExpression = [];
     let op, a, b;
-    let flag = false;
     for (let i = 0; i < expression.length; i++) {
         if (operators.includes(expression[i])){
-            if (!flag) {
-                op = i;
-                flag = true;
-            } else {
-                
-            }
+            op = i;
             break;
         }
     }
@@ -128,108 +124,142 @@ function completeExpression(decodedExpression) {
 zero.addEventListener("click", () => {
     expression += zero.innerText;
     display.innerText += zero.innerText;
+    consecutive = false;
 });
 
 one.addEventListener("click", () => {
     expression += one.innerText;
     display.innerText += one.innerText;
+    consecutive = false;
 });
 
 two.addEventListener("click", () => {
     expression += two.innerText;
     display.innerText += two.innerText;
+    consecutive = false;
 });
 
 three.addEventListener("click", () => {
     expression += three.innerText;
     display.innerText += three.innerText;
+    consecutive = false;
 });
 
 four.addEventListener("click", () => {
     expression += four.innerText;
     display.innerText += four.innerText;
+    consecutive = false;
 });
 
 five.addEventListener("click", () => {
     expression += five.innerText;
     display.innerText += five.innerText;
+    consecutive = false;
 });
 
 six.addEventListener("click", () => {
     expression += six.innerText;
     display.innerText += six.innerText;
+    consecutive = false;
 });
 
 seven.addEventListener("click", () => {
     expression += seven.innerText;
     display.innerText += seven.innerText;
+    consecutive = false;
 });
 
 eight.addEventListener("click", () => {
     expression += eight.innerText;
     display.innerText += eight.innerText;
+    consecutive = false;
 });
 
 nine.addEventListener("click", () => {
     expression += nine.innerText;
     display.innerText += nine.innerText;
+    consecutive = false;
 });
 
 // -----------------------------------------------------
 
 plus.addEventListener("click", () => {
     if (!chain) {
-        expression += plus.innerText;
-        display.innerText += plus.innerText;
-        chain = true;
+        if (!consecutive) {
+            expression += plus.innerText;
+            display.innerText += plus.innerText;
+            chain = true;
+            consecutive = true;
+        }
     } else {
-        result = operate(decodeExpression(expression));
-        display.innerText = result;
-        display.innerText += plus.innerText;
-        expression = result.toString();
-        expression += plus.innerText;
+        if (!consecutive) {
+            result = operate(decodeExpression(expression));
+            display.innerText = result;
+            display.innerText += plus.innerText;
+            expression = result.toString();
+            expression += plus.innerText;
+            consecutive = true;
+        }
     }
 });
 
 minus.addEventListener("click", () => {
     if (!chain) {
-        expression += minus.innerText;
-        display.innerText += minus.innerText;
-        chain = true;
+        if (!consecutive) {
+            expression += minus.innerText;
+            display.innerText += minus.innerText;
+            chain = true;
+            consecutive = true;
+        }
     } else {
-        result = operate(decodeExpression(expression));
-        display.innerText = result;
-        display.innerText += minus.innerText;
-        expression = result.toString();
-        expression += minus.innerText;
+        if (!consecutive) {
+            result = operate(decodeExpression(expression));
+            display.innerText = result;
+            display.innerText += minus.innerText;
+            expression = result.toString();
+            expression += minus.innerText;
+            consecutive = true;
+        }
     }
 });
 
 multi.addEventListener("click", () => {
     if (!chain) {
-        expression += multi.innerText;
-        display.innerText += multi.innerText;
-        chain = true;
+        if (!consecutive) {
+            expression += multi.innerText;
+            display.innerText += multi.innerText;
+            chain = true;
+            consecutive = true;
+        }
     } else {
-        result = operate(decodeExpression(expression));
-        display.innerText = result;
-        display.innerText += multi.innerText;
-        expression = result.toString();
-        expression += multi.innerText;
+        if (!consecutive) {
+            result = operate(decodeExpression(expression));
+            display.innerText = result;
+            display.innerText += multi.innerText;
+            expression = result.toString();
+            expression += multi.innerText;
+            consecutive = true;
+        }
     }
 });
 
 division.addEventListener("click", () => {
     if (!chain) {
-        expression += division.innerText;
-        display.innerText += division.innerText;
-        chain = true;
+        if (!consecutive) {
+            expression += division.innerText;
+            display.innerText += division.innerText;
+            chain = true;
+            consecutive = true;
+        }
     } else {
-        result = operate(decodeExpression(expression));
-        display.innerText = result;
-        display.innerText += division.innerText;
-        expression = result.toString();
-        expression += division.innerText;
+        if (!consecutive) {
+            result = operate(decodeExpression(expression));
+            display.innerText = result;
+            display.innerText += division.innerText;
+            expression = result.toString();
+            expression += division.innerText;
+            consecutive = true;
+        }
     }
 });
 
@@ -239,10 +269,12 @@ equal.addEventListener("click", () => {
         result = operate(decodeExpression(expression));
         display.innerText = result;
         chain = false;
+        consecutive = false;
     } else {
         display.innerText = '';
         expression = '';
         chain = false;
+        consecutive = false;
     }
 });
 
@@ -250,4 +282,5 @@ clear.addEventListener("click", () => {
     display.innerText = '';
     expression = '';
     chain = false;
+    consecutive = false;
 });
