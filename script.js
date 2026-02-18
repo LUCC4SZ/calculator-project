@@ -91,6 +91,8 @@ let chain = false;
 
 let consecutive = false;
 
+let newOperation = false;
+
 function decodeExpression(expression) {
     let decodedExpression = [];
     let op, a, b;
@@ -122,60 +124,100 @@ function completeExpression(decodedExpression) {
 // -----------------------------------------------------
 
 zero.addEventListener("click", () => {
+    if (newOperation) {
+        display.innerText = '';
+        newOperation = false;
+    }
     expression += zero.innerText;
     display.innerText += zero.innerText;
     consecutive = false;
 });
 
 one.addEventListener("click", () => {
+    if (newOperation) {
+        display.innerText = '';
+        newOperation = false;
+    }
     expression += one.innerText;
     display.innerText += one.innerText;
     consecutive = false;
 });
 
 two.addEventListener("click", () => {
+    if (newOperation) {
+        display.innerText = '';
+        newOperation = false;
+    }
     expression += two.innerText;
     display.innerText += two.innerText;
     consecutive = false;
 });
 
 three.addEventListener("click", () => {
+    if (newOperation) {
+        display.innerText = '';
+        newOperation = false;
+    }
     expression += three.innerText;
     display.innerText += three.innerText;
     consecutive = false;
 });
 
 four.addEventListener("click", () => {
+    if (newOperation) {
+        display.innerText = '';
+        newOperation = false;
+    }
     expression += four.innerText;
     display.innerText += four.innerText;
     consecutive = false;
 });
 
 five.addEventListener("click", () => {
+    if (newOperation) {
+        display.innerText = '';
+        newOperation = false;
+    }
     expression += five.innerText;
     display.innerText += five.innerText;
     consecutive = false;
 });
 
 six.addEventListener("click", () => {
+    if (newOperation) {
+        display.innerText = '';
+        newOperation = false;
+    }
     expression += six.innerText;
     display.innerText += six.innerText;
     consecutive = false;
 });
 
 seven.addEventListener("click", () => {
+    if (newOperation) {
+        display.innerText = '';
+        newOperation = false;
+    }
     expression += seven.innerText;
     display.innerText += seven.innerText;
     consecutive = false;
 });
 
 eight.addEventListener("click", () => {
+    if (newOperation) {
+        display.innerText = '';
+        newOperation = false;
+    }
     expression += eight.innerText;
     display.innerText += eight.innerText;
     consecutive = false;
 });
 
 nine.addEventListener("click", () => {
+    if (newOperation) {
+        display.innerText = '';
+        newOperation = false;
+    }
     expression += nine.innerText;
     display.innerText += nine.innerText;
     consecutive = false;
@@ -270,6 +312,8 @@ equal.addEventListener("click", () => {
         display.innerText = result;
         chain = false;
         consecutive = false;
+        expression = '';
+        newOperation = true;
     } else {
         display.innerText = '';
         expression = '';
