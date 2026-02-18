@@ -25,16 +25,30 @@
     flex-direction: column;
     padding: 4px;
     border: 1px solid black;
+    gap: 8px;
 }
 
 .row {
     display: flex;
     flex-direction: row;
-    border: 1px solid black;
+    gap: 4px;
 }
 
 .row > div {
     border: 1px solid black;
     width: 30%;
     height: auto;
+    text-align: center;
+}
+
+.number {
+    background-color: lightblue;
+}
+
+.operator {
+    background-color: lightgreen;
+}
+
+.clear {
+    background-color: firebrick;
 }
